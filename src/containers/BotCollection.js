@@ -16,7 +16,7 @@ class BotCollection extends React.Component {
 		myBotArr = myBotArr.filter(myBot => myBot.bot_class === this.state.filterTerm )
 	  }
 	  myBotArr = myBotArr.map((bot) => {
-		  return <BotCard key={bot.id} bot={bot} clickHandler={this.props.clickHandler} showBotHandler={this.props.showBotHandler} />
+		  return <BotCard key={bot.id} bot={bot} clickHandler={this.props.clickHandler} />
 	  })
 	  return myBotArr
   }

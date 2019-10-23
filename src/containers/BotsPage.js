@@ -43,7 +43,6 @@ class BotsPage extends React.Component {
     return (
       <div>
         <YourBotArmy botArmy={this.state.botArmy} clickHandler={this.removeFromBotArmy} />
-        {/* <BotCollection bots={this.state.bots} clickHandler={this.addToBotArmy} showBotHandler={this.changeBotToShow} /> */}
         {bots}
       </div>
     );
