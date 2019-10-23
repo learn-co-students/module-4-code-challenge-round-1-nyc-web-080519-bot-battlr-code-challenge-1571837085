@@ -12,3 +12,14 @@
 .ui.grid {
   padding: 0px 20px;
 }
+
+.search-form {
+  margin:10%;
+}
+
+.search-input {
+  /* padding: 3%; */
+  font-size: 22px;
+  height: 2vh;
+  width: fit-content;
+}
