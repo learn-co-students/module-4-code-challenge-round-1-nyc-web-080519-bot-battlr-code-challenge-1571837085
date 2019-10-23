@@ -1,13 +1,15 @@
 import React from "react";
 import BotCollection from './BotCollection'
 import YourBotArmy from './YourBotArmy'
-import BotCard from '../components/BotCard'
+import BotSpecs from '../components/BotSpecs'
+
 
 class BotsPage extends React.Component {
  
   state = {
     bots: [],
-    army: []
+    army: [],
+    clickedBot: {}
   }
 
   componentDidMount() {
@@ -16,6 +18,16 @@ class BotsPage extends React.Component {
     .then(data => {
       this.setState({bots: data})
     })
+    console.log(this.state.clickedBot.name)
+  }
+
+  //REPLACE COLLECTION WITH SPECS
+  populateClickedBot = (botObj) => {
+    this.setState({clickedBot: botObj}) 
+  }
+
+  unpopulateClickedBot = () => {
+    this.setState({clickedBot: {}})
   }
 
   //GRAB AND REMOVE BOTS
@@ -29,14 +41,19 @@ class BotsPage extends React.Component {
     this.setState({army: newArmy})
   }
 
-
+  
   render() {
+    console.log(this.state.clickedBot.name)
+    //conditional render --> if clickedBot !== {} show BotCollection, else show BotSpecs
+    let showing = this.state.clickedBot.name === undefined ? <BotCollection bots={this.state.bots} clickHandler={this.populateClickedBot} clickedBot={this.state.clickedBot}/> : <BotSpecs bot={this.state.clickedBot} clickHandler={this.grabBot} unpopulate={this.unpopulateClickedBot}/>
 
 
     return (
       <div>
         <YourBotArmy army={this.state.army} clickHandler={this.removeBot}/>
-        <BotCollection bots={this.state.bots} clickHandler={this.grabBot}/>
+        {showing}
+        {/* <BotSpecs bot={this.state.clickedBot} clickHandler={this.grabBot} unpopulate={this.unpopulateClickedBot}/>
+        <BotCollection bots={this.state.bots} clickHandler={this.populateClickedBot} clickedBot={this.state.clickedBot}/> */}
       </div>
     );
   }
