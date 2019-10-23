@@ -2,7 +2,6 @@ import React from "react";
 import YourBotArmy from "./YourBotArmy"
 import BotCollection from "./BotCollection"
 
-
 class BotsPage extends React.Component {
   state = {
     myCollection: []
