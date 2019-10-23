@@ -19,12 +19,18 @@ const BotCard = props => {
       botType = <div />;
   }
 
+  //When I click on each bot - it should take that bots information
+  //and use it to render the same bot card in 'Your Bot Army'
+  //Adding bot functionality 
+  const clickHandler = (botObj) => {props.clickHandler(botObj)}
+
+
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        onClick={() => clickHandler(bot)}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
