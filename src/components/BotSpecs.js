@@ -61,7 +61,7 @@ const BotSpecs = props => {
             <button
               className="ui button fluid"
               onClick={() =>
-                props.showBotHandler("")
+                props.clickHandler("")
               }
             >
               Go Back

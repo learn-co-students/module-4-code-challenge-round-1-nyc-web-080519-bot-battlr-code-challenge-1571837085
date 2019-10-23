@@ -35,9 +35,9 @@ class BotsPage extends React.Component {
   }
 
   render() {
-    let bots = <BotCollection bots={this.state.bots}  showBotHandler={this.changeBotToShow} />
+    let bots = <BotCollection bots={this.state.bots}  clickHandler={this.changeBotToShow} />
     if (this.state.botToShow !== "") {
-      bots = <BotSpecs bot={this.state.botToShow} showBotHandler={this.changeBotToShow} addToBotArmy={this.addToBotArmy} />
+      bots = <BotSpecs bot={this.state.botToShow} clickHandler={this.changeBotToShow} addToBotArmy={this.addToBotArmy} />
     }
   
     return (
