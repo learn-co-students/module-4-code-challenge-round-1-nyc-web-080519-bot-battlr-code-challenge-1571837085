@@ -1,13 +1,17 @@
 import React from "react";
 import BotCollection from './BotCollection'
 import YourBotArmy from './YourBotArmy'
+import BotSpecs from '../components/BotSpecs'
 
 class BotsPage extends React.Component {
   //start here with your code for step one
 
   state = {
     bots: [],
-    myBots: []
+    myBots: [],
+    showSpecs: false,
+
+    showBot: null
   }
 
 
@@ -18,6 +22,15 @@ class BotsPage extends React.Component {
   removeBot = (botObj) => {
     let updatedBots = this.state.myBots.filter(bot => { return bot.id !== botObj.id})
     this.setState({myBots: updatedBots})
+  }
+  
+  showBotSpecs = (botObj) => {
+    console.log(botObj)
+    this.setState({showSpecs: true, showBot: botObj})
+  }
+
+  showAllBots = () => {
+    this.setState({showSpecs: false, showBot: null})
   }
 
   componentDidMount(){
@@ -31,10 +44,11 @@ class BotsPage extends React.Component {
       <div>
 
         <YourBotArmy myBots={this.state.myBots} removeBot={this.removeBot}/>
-        <BotCollection bots={this.state.bots} addBot={this.addBot}/>
+        {!this.state.showSpecs ? <BotCollection bots={this.state.bots} addBot={this.addBot} showBotSpecs={this.showBotSpecs}/> : <BotSpecs bot={this.state.showBot} showAllBots={this.showAllBots}/>}
   
       </div>
     );
+
   }
 
 }
