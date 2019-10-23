@@ -12,3 +12,9 @@
 .ui.grid {
   padding: 0px 20px;
 }
+
+.title {
+  float: center;
+  color: black;
+  font-family: OCR A Std, monospace;
+}

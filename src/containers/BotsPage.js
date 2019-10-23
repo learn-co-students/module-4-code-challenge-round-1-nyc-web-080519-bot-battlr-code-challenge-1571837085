@@ -12,13 +12,13 @@ class BotsPage extends React.Component {
     clickedBot: {}
   }
 
+  //MOUNTING
   componentDidMount() {
     fetch("https://bot-battler-api.herokuapp.com/api/v1/bots")
     .then(resp => resp.json())
     .then(data => {
       this.setState({bots: data})
     })
-    console.log(this.state.clickedBot.name)
   }
 
   //REPLACE COLLECTION WITH SPECS
@@ -43,7 +43,6 @@ class BotsPage extends React.Component {
 
   
   render() {
-    console.log(this.state.clickedBot.name)
     //conditional render --> if clickedBot !== {} show BotCollection, else show BotSpecs
     let showing = this.state.clickedBot.name === undefined ? <BotCollection bots={this.state.bots} clickHandler={this.populateClickedBot} clickedBot={this.state.clickedBot}/> : <BotSpecs bot={this.state.clickedBot} clickHandler={this.grabBot} unpopulate={this.unpopulateClickedBot}/>
 
