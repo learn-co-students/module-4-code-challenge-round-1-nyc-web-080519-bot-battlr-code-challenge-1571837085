@@ -20,7 +20,7 @@ const BotCard = props => {
   }
 
   return (
-    <div className="ui column">
+    <div className="ui column" onClick={() => {props.clickHandler(bot)}}>
       <div
         className="ui card"
         key={bot.id}
