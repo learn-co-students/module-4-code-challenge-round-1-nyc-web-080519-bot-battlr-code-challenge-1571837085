@@ -18,8 +18,9 @@ const BotSpecs = props => {
     default:
       botType = <div />;
   }
-
+  console.log(props)
   return (
+    
     <div className="ui segment">
       <div className="ui two column centered grid">
         <div className="row">
@@ -61,7 +62,7 @@ const BotSpecs = props => {
             <button
               className="ui button fluid"
               onClick={() =>
-                console.log('connect this to a function that shows all bots')
+                props.hideSpec()
               }
             >
               Go Back
@@ -69,9 +70,7 @@ const BotSpecs = props => {
             <button
               className="ui button fluid"
               onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
+                props.addClickHandler(props.bot)
               }
             >
               Enlist

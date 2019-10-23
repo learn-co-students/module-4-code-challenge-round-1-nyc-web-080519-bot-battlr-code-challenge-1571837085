@@ -1,12 +1,14 @@
 import React from "react";
 import BotCollection from "./BotCollection"
 import YourBotArmy from "./YourBotArmy"
+import BotSpecs from "../components/BotSpecs";
 
 class BotsPage extends React.Component {
   //start here with your code for step one
   state= {
     allBots: [],
-    myBots: []
+    myBots: [],
+    shown: false
   }
 
   componentDidMount(){
@@ -19,28 +21,45 @@ class BotsPage extends React.Component {
 
     return (
       <div>
-        {<YourBotArmy bots={this.state.myBots} clickHandler={this.clickHandler}/>}
-        {<BotCollection bots={this.state.allBots} clickHandler={this.clickHandler}/>}
+        {<YourBotArmy bots={this.state.myBots} showSpec={this.showSpec} removeClickHandler={this.removeClickHandler}/>}
+        {!this.state.shown ? <BotCollection bots={this.state.allBots} showSpec={this.showSpec} hideSpec={this.hideSpec}/> : <BotSpecs hideSpec={this.hideSpec} bot={this.state.shown} addClickHandler={this.addClickHandler}/>}
       </div>
     );
   }
 
-  clickHandler = (botObj, location) => {
-    if(location === "all" && !this.state.myBots.includes(botObj)){
-      console.log("clicked in all", botObj)
+  addClickHandler = (botObj) => {
+    if(!this.state.myBots.includes(botObj)){
       let updated = [...this.state.myBots]
       updated.push(botObj)
       this.setState({
-        myBots:updated
+        myBots:updated,
+        shown: false
       })
-    } else if (location === "myArmy"){
-      console.log("clicked in mine", botObj)
+    }}
+  removeClickHandler = (botObj) => {
+      // console.log("clicked in mine", botObj)
       let updated = this.state.myBots.filter(bot=> bot !== botObj)
       this.setState({
         myBots: updated
       })
     }
+
+
+  showSpec = (botObj) => {
+    this.setState({
+      shown:  {...botObj}
+    })
   }
+
+  hideSpec = () => {
+    this.setState({
+      shown: false
+    })
+  }
+
+
+
+
 }
 
 export default BotsPage;
