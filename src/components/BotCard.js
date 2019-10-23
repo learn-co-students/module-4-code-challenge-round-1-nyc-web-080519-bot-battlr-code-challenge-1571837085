@@ -1,7 +1,7 @@
 import React from "react";
 
 const BotCard = props => {
-  const { bot } = props;
+  const { bot, clickHandler } = props;
 
   let botType;
 
@@ -24,7 +24,7 @@ const BotCard = props => {
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        onClick={() => clickHandler(bot)}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
@@ -60,3 +60,5 @@ const BotCard = props => {
 };
 
 export default BotCard;
+
+// receives a clickhandler as a prop from it's parent component - BotCollection, takes the bot as it's argument and is wrapped in an anonymous function, bc we only want it to fire when the card is clicked, not every time it's rendered
